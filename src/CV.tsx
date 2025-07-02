@@ -204,7 +204,7 @@ function CV() {
     <ContactInfo name={cvdata.name} ci={cvdata.contact_info} />
     <TitleSummary title={cvdata.title} summary={cvdata.summary} />
     <Positions positions={cvdata.positions} />
-    {cvdata.showcases && cvdata.showcases.map(showcase => <Showcase showcase={showcase} />)}
+    {cvdata.showcases && cvdata.showcases.map((showcase, key) => <Showcase key={key} showcase={showcase} />)}
     <Skills skills={cvdata.skills} />
     <Keywords keywords={cvdata.keywords} />
   </div>;
