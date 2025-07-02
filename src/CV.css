@@ -1,8 +1,8 @@
 .cv {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin: 4em;
-  transition: opacity 1s ease;
-  opacity: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
 }
 
 .hidden {
@@ -49,7 +49,6 @@ ul, h1, h2, h3 {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  /* gap: 0 5em; */
 }
 
 .keyword {
