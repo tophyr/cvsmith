@@ -72,12 +72,12 @@ function ContactInfo({name, ci}: {name: string, ci: ContactInfo}) {
     <div className='contact_info'>
       <div className='left'>
         <div className='location'>{ci.location}</div>
-        <div className='phone'>{ci.phone}</div>
+        <div className='phone'><a href={`tel:${ci.phone}`}>{ci.phone}</a></div>
       </div>
       <h1 className='name'>{name}</h1>
       <div className='right'>
-        <div className='email'>{ci.email}</div>
-        <div className='website'>{ci.website}</div>
+        <div className='email'><a href={`mailto:${ci.email}?subject=I+want+to+hire+you`}>{ci.email}</a></div>
+        <div className='website'><a href={`https://${ci.website}/`}>{ci.website}</a></div>
       </div>
     </div>
   );
