@@ -92,10 +92,10 @@ function titleSummary(title?: AggString, summary?: AggString) {
   );
 }
 
-function keywords(keywords?: Array<string>) {
+function Keywords({ keywords }: { keywords?: Array<string> }) {
   return keywords && (
     <ul className='keywords'>
-      {keywords.map(kw => <li className='keyword'>{kw}</li>)}
+      {keywords.map((kw, key) => <li key={key} className='keyword'>{kw}</li>)}
     </ul>
   )
 }
@@ -117,58 +117,51 @@ function date(date?: Date) {
   return formatter.format(new Date(date.year, (date.month ?? 1) - 1, date.day ?? 1));
 }
 
-function positions(positions: Array<Position>) {
+function Position({ position }: { position: Position }) {
   return (
-    <div className='showcase positions'>
-      <h2 className="showcase_name">Position History</h2>
-      {positions.map(position => (
-        <div className='position'>
-          <h3 className='company'>{str(position.company)}</h3>
-          <div className="position_details">
-            <div className='position_title'>{str(position.title)}</div>
-            <div className='position_duration'>{date(position.start)} - {date(position.end)}</div>
-          </div>
-          {position.summary && <div className='position_summary'>{str(position.summary)}</div>}
-          {position.highlights && 
-            <ul className="highlights">
-            {position.highlights.map((hilite, idx) => <li key={idx}>{str(hilite)}</li>)}
-            </ul>
-          }
-        </div>
-      ))}
+    <div className='position'>
+      <h3 className='company'>{str(position.company)}</h3>
+      <div className="position_details">
+        <div className='position_title'>{str(position.title)}</div>
+        <div className='position_duration'>{date(position.start)} - {date(position.end)}</div>
+      </div>
+      {position.summary && <div className='position_summary'>{str(position.summary)}</div>}
+      {position.highlights &&
+        <ul className="highlights">
+          {position.highlights.map((hilite, key) => <li key={key}>{str(hilite)}</li>)}
+        </ul>
+      }
     </div>
   )
 }
 
-function showcases(showcases?: Array<Showcase>) {
-  return showcases && showcases.map(showcase => (
-    <div className="showcase">
-      <h2 className="showcase_name">{str(showcase.name)}</h2>
-      {showcase.items.map(item => (
-        <div className="showcase_item">
-          <div className="showcase_content">
-            <h3 className="showcase_item_name">{str(item.name)}</h3>
-            {item.url && <a href={item.url} className="showcase_item_url">{item.url}</a>}
-          </div>
-          {item.highlights &&
-            <ul className="highlights">
-              {item.highlights.map((hilite, idx) => <li key={idx}>{str(hilite)}</li>)}
-            </ul>
-          }
+function Showcase({ showcase }: { showcase: Showcase }) {
+  return <div className="showcase">
+    <h2 className="showcase_name">{str(showcase.name)}</h2>
+    {showcase.items.map((item, key) => (
+      <div key={key} className="showcase_item">
+        <div className="showcase_content">
+          <h3 className="showcase_item_name">{str(item.name)}</h3>
+          {item.url && <a href={item.url} className="showcase_item_url">{item.url}</a>}
         </div>
-      ))}
-    </div>
-  ));
+        {item.highlights &&
+          <ul className="highlights">
+            {item.highlights.map((hilite, key) => <li key={key}>{str(hilite)}</li>)}
+          </ul>
+        }
+      </div>
+    ))}
+  </div>
 }
 
-function skills(skills?: Array<SkillList>) {
+function Skills({ skills }: { skills?: Array<SkillList> }) {
   return skills && <div className="skills">
     <h2>Skills</h2>
-    {skills.map(skill => (
-      <div>
+    {skills.map((skill, key) => (
+      <div key={key}>
         {skill.type && <h3>{str(skill.type)}</h3>}
         <ul>
-          {skill.items.map((skill, idx) => <li key={idx}>{str(skill)}</li>)}
+          {skill.items.map((skill, key) => <li key={key}>{str(skill)}</li>)}
         </ul>
       </div>
     ))}
@@ -205,10 +198,13 @@ function CV() {
   return <div className='cv'>
     {contactInfo(cvdata.name, cvdata.contact_info)}
     {titleSummary(cvdata.title, cvdata.summary)}
-    {positions(cvdata.positions)}
-    {showcases(cvdata.showcases)}
-    {skills(cvdata.skills)}
-    {keywords(cvdata.keywords)}
+    <div className='showcase positions'>
+      <h2 className="showcase_name">Position History</h2>
+      {cvdata.positions.map((position, key) => <Position key={key} position={position} />)}
+    </div>
+    {cvdata.showcases && cvdata.showcases.map(showcase => <Showcase showcase={showcase} />)}
+    <Skills skills={cvdata.skills} />
+    <Keywords keywords={cvdata.keywords} />
   </div>;
 }
 
