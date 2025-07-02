@@ -45,11 +45,13 @@ h2 {
   text-align: center;
 }
 
-.keywords {
+.keyword_set {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .keyword {
@@ -57,12 +59,12 @@ h2 {
 }
 
 li.keyword::before {
-  content: "| ";
+  content: "· ";
   margin-left: -5px;
 }
 
 li.keyword::after {
-  content: " |";
+  content: " ·";
 }
 
 .position_details {

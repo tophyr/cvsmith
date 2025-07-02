@@ -51,20 +51,14 @@ interface Showcase {
   items: Array<Project>
 };
 
-interface SkillList {
-  type?: AggString,
-  items: Array<AggString>
-};
-
 interface CV {
   name: string,
   contact_info: ContactInfo,
   title?: AggString,
   summary?: AggString,
-  keywords?: Array<string>,
+  keywords?: Array<Array<AggString>>,
   positions: Array<Position>,
   showcases?: Array<Showcase>,
-  skills?: Array<SkillList>,
 }
 
 function ContactInfo({ name, ci }: { name: string, ci: ContactInfo }) {
@@ -92,12 +86,13 @@ function TitleSummary({ title, summary }: { title?: AggString, summary?: AggStri
   );
 }
 
-function Keywords({ keywords }: { keywords?: Array<string> }) {
-  return keywords && (
-    <ul className='keywords'>
-      {keywords.map((kw, key) => <li key={key} className='keyword'>{kw}</li>)}
-    </ul>
-  )
+function Keywords({ keywords }: { keywords?: Array<Array<AggString>> }) {
+  return keywords && <div className="keywords">
+    <h2>Keywords</h2>
+    {keywords.map((kwset, key) => <ul key={key} className='keyword_set'>
+      {kwset.map((kw, key) => <li key={key} className='keyword'>{str(kw)}</li>)}
+    </ul>)}
+  </div>
 }
 
 function date(date?: Date) {
@@ -159,20 +154,6 @@ function Showcase({ showcase }: { showcase: Showcase }) {
   </div>
 }
 
-function Skills({ skills }: { skills?: Array<SkillList> }) {
-  return skills && <div className="skills">
-    <h2>Skills</h2>
-    {skills.map((skill, key) => (
-      <div key={key}>
-        {skill.type && <h3>{str(skill.type)}</h3>}
-        <ul>
-          {skill.items.map((skill, key) => <li key={key}>{str(skill)}</li>)}
-        </ul>
-      </div>
-    ))}
-  </div>;
-}
-
 function CV() {
   const [cvdata, setCVData] = useState<CV | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -207,7 +188,6 @@ function CV() {
       <TitleSummary title={cvdata.title} summary={cvdata.summary} />
       <Positions positions={cvdata.positions} />
       {cvdata.showcases && cvdata.showcases.map((showcase, key) => <Showcase key={key} showcase={showcase} />)}
-      <Skills skills={cvdata.skills} />
       <Keywords keywords={cvdata.keywords} />
     </div>
     <div className="pad">hello</div>
