@@ -67,7 +67,7 @@ interface CV {
   skills?: Array<SkillList>,
 }
 
-function ContactInfo({name, ci}: {name: string, ci: ContactInfo}) {
+function ContactInfo({ name, ci }: { name: string, ci: ContactInfo }) {
   return (
     <div className='contact_info'>
       <div className='left'>
@@ -83,7 +83,7 @@ function ContactInfo({name, ci}: {name: string, ci: ContactInfo}) {
   );
 }
 
-function TitleSummary({title, summary} : {title?: AggString, summary?: AggString}) {
+function TitleSummary({ title, summary }: { title?: AggString, summary?: AggString }) {
   return (
     <>
       {title && <h2 className='title'>{str(title)}</h2>}
