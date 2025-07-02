@@ -123,18 +123,18 @@ function Positions({ positions }: { positions: Array<Position> }) {
       <h2 className="showcase_name">Position History</h2>
       {positions.map((position, key) => (
         <div key={key} className='position'>
-      <h3 className='company'>{str(position.company)}</h3>
-      <div className="position_details">
-        <div className='position_title'>{str(position.title)}</div>
-        <div className='position_duration'>{date(position.start)} - {date(position.end)}</div>
-      </div>
-      {position.summary && <div className='position_summary'>{str(position.summary)}</div>}
-      {position.highlights &&
-        <ul className="highlights">
-          {position.highlights.map((hilite, key) => <li key={key}>{str(hilite)}</li>)}
-        </ul>
-      }
-    </div>
+          <h3 className='company'>{str(position.company)}</h3>
+          <div className="position_details">
+            <div className='position_title'>{str(position.title)}</div>
+            <div className='position_duration'>{date(position.start)} - {date(position.end)}</div>
+          </div>
+          {position.summary && <div className='position_summary'>{str(position.summary)}</div>}
+          {position.highlights &&
+            <ul className="highlights">
+              {position.highlights.map((hilite, key) => <li key={key}>{str(hilite)}</li>)}
+            </ul>
+          }
+        </div>
       ))}
     </div>
   )
@@ -200,13 +200,17 @@ function CV() {
     return <div>Loading...</div>;
   }
 
-  return <div className='cv'>
-    <ContactInfo name={cvdata.name} ci={cvdata.contact_info} />
-    <TitleSummary title={cvdata.title} summary={cvdata.summary} />
-    <Positions positions={cvdata.positions} />
-    {cvdata.showcases && cvdata.showcases.map((showcase, key) => <Showcase key={key} showcase={showcase} />)}
-    <Skills skills={cvdata.skills} />
-    <Keywords keywords={cvdata.keywords} />
+  return <div className="container">
+    <div className="pad">hello</div>
+    <div className='cv'>
+      <ContactInfo name={cvdata.name} ci={cvdata.contact_info} />
+      <TitleSummary title={cvdata.title} summary={cvdata.summary} />
+      <Positions positions={cvdata.positions} />
+      {cvdata.showcases && cvdata.showcases.map((showcase, key) => <Showcase key={key} showcase={showcase} />)}
+      <Skills skills={cvdata.skills} />
+      <Keywords keywords={cvdata.keywords} />
+    </div>
+    <div className="pad">hello</div>
   </div>;
 }
 
