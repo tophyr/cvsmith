@@ -18,6 +18,10 @@ ul, h1, h2, h3 {
   margin-block-start: 0;
 }
 
+h2 {
+  text-align: center;
+}
+
 .contact_info {
   display: flex;
   justify-content: space-between;
@@ -26,10 +30,6 @@ ul, h1, h2, h3 {
 
 .name {
   flex: 2;
-  text-align: center;
-}
-
-.title {
   text-align: center;
 }
 
@@ -63,10 +63,6 @@ li.keyword::before {
 
 li.keyword::after {
   content: " |";
-}
-
-.showcase_name {
-  text-align: center;
 }
 
 .position_details {
