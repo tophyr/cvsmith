@@ -67,7 +67,7 @@ interface CV {
   skills?: Array<SkillList>,
 }
 
-function contactInfo(name: string, ci: ContactInfo) {
+function ContactInfo({name, ci}: {name: string, ci: ContactInfo}) {
   return (
     <div className='contact_info'>
       <div className='left'>
@@ -83,7 +83,7 @@ function contactInfo(name: string, ci: ContactInfo) {
   );
 }
 
-function titleSummary(title?: AggString, summary?: AggString) {
+function TitleSummary({title, summary} : {title?: AggString, summary?: AggString}) {
   return (
     <>
       {title && <h2 className='title'>{str(title)}</h2>}
@@ -201,8 +201,8 @@ function CV() {
   }
 
   return <div className='cv'>
-    {contactInfo(cvdata.name, cvdata.contact_info)}
-    {titleSummary(cvdata.title, cvdata.summary)}
+    <ContactInfo name={cvdata.name} ci={cvdata.contact_info} />
+    <TitleSummary title={cvdata.title} summary={cvdata.summary} />
     <Positions positions={cvdata.positions} />
     {cvdata.showcases && cvdata.showcases.map(showcase => <Showcase showcase={showcase} />)}
     <Skills skills={cvdata.skills} />
