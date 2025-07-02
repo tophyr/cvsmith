@@ -117,9 +117,12 @@ function date(date?: Date) {
   return formatter.format(new Date(date.year, (date.month ?? 1) - 1, date.day ?? 1));
 }
 
-function Position({ position }: { position: Position }) {
+function Positions({ positions }: { positions: Array<Position> }) {
   return (
-    <div className='position'>
+    <div className='showcase positions'>
+      <h2 className="showcase_name">Position History</h2>
+      {positions.map((position, key) => (
+        <div key={key} className='position'>
       <h3 className='company'>{str(position.company)}</h3>
       <div className="position_details">
         <div className='position_title'>{str(position.title)}</div>
@@ -131,6 +134,8 @@ function Position({ position }: { position: Position }) {
           {position.highlights.map((hilite, key) => <li key={key}>{str(hilite)}</li>)}
         </ul>
       }
+    </div>
+      ))}
     </div>
   )
 }
@@ -198,10 +203,7 @@ function CV() {
   return <div className='cv'>
     {contactInfo(cvdata.name, cvdata.contact_info)}
     {titleSummary(cvdata.title, cvdata.summary)}
-    <div className='showcase positions'>
-      <h2 className="showcase_name">Position History</h2>
-      {cvdata.positions.map((position, key) => <Position key={key} position={position} />)}
-    </div>
+    <Positions positions={cvdata.positions} />
     {cvdata.showcases && cvdata.showcases.map(showcase => <Showcase showcase={showcase} />)}
     <Skills skills={cvdata.skills} />
     <Keywords keywords={cvdata.keywords} />
