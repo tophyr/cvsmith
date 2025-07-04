@@ -91,3 +91,8 @@ li.keyword::after {
 .container {
   display: flex;
 }
+
+img.contact_info_icon {
+  height: 1em;
+  vertical-align: -0.1875em;
+}

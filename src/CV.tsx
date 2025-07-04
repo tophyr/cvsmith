@@ -28,7 +28,8 @@ interface ContactInfo {
   location?: string,
   email?: string,
   phone?: string,
-  website?: string
+  website?: string,
+  linkedin?: string
 }
 
 interface Position {
@@ -65,13 +66,17 @@ function ContactInfo({ name, ci }: { name: string, ci: ContactInfo }) {
   return (
     <div className='contact_info'>
       <div className='left'>
-        <div className='location'>{ci.location}</div>
-        <div className='phone'><a href={`tel:${ci.phone}`}>{ci.phone}</a></div>
+        {ci.location && <div className='location'>{ci.location}</div>}
+        {ci.phone && <div className='phone'><a href={`tel:${ci.phone}`}>{ci.phone}</a></div>}
       </div>
       <h1 className='name'>{name}</h1>
       <div className='right'>
-        <div className='email'><a href={`mailto:${ci.email}?subject=I+want+to+hire+you`}>{ci.email}</a></div>
-        <div className='website'><a href={`https://${ci.website}/`}>{ci.website}</a></div>
+        {ci.email && <div className='email'><a href={`mailto:${ci.email}?subject=I+want+to+hire+you`}>{ci.email}</a></div>}
+        {ci.website && <div className='website'><a href={`https://${ci.website}/`}>{ci.website}</a></div>}
+        {ci.linkedin && <div className='linkedin'><a href={`https://www.linkedin.com/in/${ci.linkedin}/`}>
+          <img className="contact_info_icon" src="LI-In-Bug.png" />
+          {ci.linkedin}
+          </a></div>}
       </div>
     </div>
   );
