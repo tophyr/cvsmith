@@ -94,5 +94,6 @@ li.keyword::after {
 
 img.contact_info_icon {
   height: 1em;
-  vertical-align: -0.1875em;
+  vertical-align: -0.2em;
+  margin-inline: 0.2em;
 }

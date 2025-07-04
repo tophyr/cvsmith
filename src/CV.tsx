@@ -29,7 +29,8 @@ interface ContactInfo {
   email?: string,
   phone?: string,
   website?: string,
-  linkedin?: string
+  linkedin?: string,
+  github?: string,
 }
 
 interface Position {
@@ -76,6 +77,10 @@ function ContactInfo({ name, ci }: { name: string, ci: ContactInfo }) {
         {ci.linkedin && <div className='linkedin'><a href={`https://www.linkedin.com/in/${ci.linkedin}/`}>
           <img className="contact_info_icon" src="LI-In-Bug.png" />
           {ci.linkedin}
+          </a></div>}
+        {ci.github && <div className='github'><a href={`https://www.github.com/${ci.github}/`}>
+          <img className="contact_info_icon" src="github-mark.svg" />
+          {ci.github}
           </a></div>}
       </div>
     </div>
