@@ -181,6 +181,8 @@ function CV() {
     return <div>Loading...</div>;
   }
 
+  document.title = cvdata.name;
+
   return <div className="container">
     <div className="pad">hello</div>
     <div className='cv'>
