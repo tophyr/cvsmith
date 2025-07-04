@@ -69,10 +69,10 @@ function ContactInfo({ name, ci }: { name: string, ci: ContactInfo }) {
       <div className='left'>
         {ci.location && <div className='location'>{ci.location}</div>}
         {ci.phone && <div className='phone'><a href={`tel:${ci.phone}`}>{ci.phone}</a></div>}
+        {ci.email && <div className='email'><a href={`mailto:${ci.email}?subject=I+want+to+hire+you`}>{ci.email}</a></div>}
       </div>
       <h1 className='name'>{name}</h1>
       <div className='right'>
-        {ci.email && <div className='email'><a href={`mailto:${ci.email}?subject=I+want+to+hire+you`}>{ci.email}</a></div>}
         {ci.website && <div className='website'><a href={`https://${ci.website}/`}>{ci.website}</a></div>}
         {ci.linkedin && <div className='linkedin'><a href={`https://www.linkedin.com/in/${ci.linkedin}/`}>
           <img className="contact_info_icon" src="LI-In-Bug.png" />
