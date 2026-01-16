@@ -31,7 +31,7 @@ This runs the TypeScript compiler for type checking and then invokes Vite to gen
 
 ## Personalizing
 
-This project pulls in a submodule, [cv](https://github.com/tophyr/cv), which is intended to contain yourgit stat actual professional history. Fork that repo, fill in your own data, and then put its `cv.json` and `profile.jpg` insde `public/data/` here then run the build. Voila! You have your own web CV.
+This project pulls in a submodule, [cv](https://github.com/tophyr/cv), which is intended to contain your actual professional history. Fork that repo, fill in your own data, and then put its `cv.json` and `profile.jpg` insde `public/data/` here then run the build. Voila! You have your own web CV.
 
 ## Improving
 
